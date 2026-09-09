@@ -153,11 +153,11 @@ The current backend accepts:
 
 ```json
 {
-	"timestamp": 0.0,
-	"speed_mps": 14.5,
-	"heading_deg": 90.0,
-	"longitudinal_g": 0.02,
-	"lateral_g": 0.01
+  "timestamp": 0.0,
+  "speed_mps": 14.5,
+  "heading_deg": 90.0,
+  "longitudinal_g": 0.02,
+  "lateral_g": 0.01
 }
 ```
 
@@ -179,12 +179,12 @@ The moving average was chosen because it is simple, deterministic, inexpensive, 
 
 Default thresholds live in `DetectorConfig` in `backend/app/detectors.py`.
 
-| Event | Default rule |
-| --- | --- |
-| Harsh braking | Longitudinal acceleration `<= -0.30 g` |
-| Sharp turn | Absolute lateral acceleration `>= 0.30 g` |
-| Speeding | Above 55 mph plus a 5 mph margin for at least 3 seconds |
-| Idle | Speed `<= 0.5 m/s` for at least 60 seconds |
+| Event         | Default rule                                            |
+| ------------- | ------------------------------------------------------- |
+| Harsh braking | Longitudinal acceleration `<= -0.30 g`                  |
+| Sharp turn    | Absolute lateral acceleration `>= 0.30 g`               |
+| Speeding      | Above 55 mph plus a 5 mph margin for at least 3 seconds |
+| Idle          | Speed `<= 0.5 m/s` for at least 60 seconds              |
 
 Severity is based on event magnitude relative to its threshold:
 
@@ -196,13 +196,13 @@ Every detected event includes an event type, timestamp, severity, and raw signal
 
 ```json
 {
-	"event_type": "harsh_braking",
-	"timestamp": 72.0,
-	"severity": "moderate",
-	"signal": {
-		"longitudinal_g": -0.42,
-		"speed_mps": 14.0
-	}
+  "event_type": "harsh_braking",
+  "timestamp": 72.0,
+  "severity": "moderate",
+  "signal": {
+    "longitudinal_g": -0.42,
+    "speed_mps": 14.0
+  }
 }
 ```
 
@@ -256,7 +256,7 @@ GET /health
 Response:
 
 ```json
-{"status": "ok"}
+{ "status": "ok" }
 ```
 
 ### Score existing events
@@ -270,11 +270,11 @@ Request:
 
 ```json
 {
-	"distance_miles": 10,
-	"events": [
-		{"event_type": "harsh_braking", "severity": "moderate"},
-		{"event_type": "speeding", "severity": "mild"}
-	]
+  "distance_miles": 10,
+  "events": [
+    { "event_type": "harsh_braking", "severity": "moderate" },
+    { "event_type": "speeding", "severity": "mild" }
+  ]
 }
 ```
 
@@ -289,23 +289,23 @@ Request:
 
 ```json
 {
-	"distance_miles": 38.4,
-	"readings": [
-		{
-			"timestamp": 0,
-			"speed_mps": 14,
-			"heading_deg": 90,
-			"longitudinal_g": 0,
-			"lateral_g": 0
-		},
-		{
-			"timestamp": 1,
-			"speed_mps": 13,
-			"heading_deg": 91,
-			"longitudinal_g": -0.42,
-			"lateral_g": 0
-		}
-	]
+  "distance_miles": 38.4,
+  "readings": [
+    {
+      "timestamp": 0,
+      "speed_mps": 14,
+      "heading_deg": 90,
+      "longitudinal_g": 0,
+      "lateral_g": 0
+    },
+    {
+      "timestamp": 1,
+      "speed_mps": 13,
+      "heading_deg": 91,
+      "longitudinal_g": -0.42,
+      "lateral_g": 0
+    }
+  ]
 }
 ```
 
